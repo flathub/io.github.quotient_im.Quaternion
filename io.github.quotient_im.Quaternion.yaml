@@ -28,6 +28,10 @@ modules:
   - type: git
     url: https://gitlab.matrix.org/matrix-org/olm.git
     tag:  '3.2.16'
+    commit: 7e0c8277032e40308987257b711b38af8d77cc69
+    x-checker-data:
+      type: git
+      tag.pattern: ([\d.]+)
   config-opts:
   - -DBUILD_SHARED_LIBS=OFF
   - -DOLM_TESTS=OFF
@@ -50,7 +54,11 @@ modules:
   - type: git
     url: https://gitlab.gnome.org/GNOME/libsecret.git
     tag: '0.21.6'
-
+    commit: e59012225c2857d53738574423416b541f11a131
+    x-checker-data:
+      type: git
+      tag.pattern: ([\d.]+)
+          
 - name: qtkeychain
   buildsystem: cmake-ninja
   builddir: true
@@ -58,6 +66,10 @@ modules:
   - type: git
     url: https://github.com/frankosterfeld/qtkeychain.git
     tag: '0.15.0'
+    commit: ad7344c45a86a4f66cbafc4b081b5f7b876cb0b7
+    x-checker-data:
+      type: git
+      tag.pattern: ([\d.]+)
   cleanup:
   - mkspecs
   - /lib/cmake
@@ -77,8 +89,12 @@ modules:
   sources:
   - type: git
     url: https://github.com/quotient-im/Quaternion.git
-    tag: '0.0.97-beta2'
     disable-submodules: false
+    tag: '0.0.97-rc'
+    commit: d23f03c4185de3cd74b2c058f912236e216ef25e
+    x-checker-data:
+      type: git
+      tag.pattern: ([\d.]+)(-[a-z]+)?
   config-opts:
   - -DQuotient_INSTALL_TESTS=OFF
   - -DBUILD_SHARED_LIBS=OFF
