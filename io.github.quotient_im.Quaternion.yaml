@@ -90,7 +90,7 @@ modules:
   - type: git
     url: https://github.com/quotient-im/Quaternion.git
     disable-submodules: false
-    tag: '0.0.97-rc2'
+    tag: '0.0.97'
     commit: 051e8a92162011b0732d9a22bfecd5365e489474
     x-checker-data:
       type: git
