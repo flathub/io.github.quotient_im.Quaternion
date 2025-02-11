@@ -17,57 +17,84 @@ finish-args:
 - --talk-name=org.kde.StatusNotifierWatcher
 cleanup:
 - /include
-- /lib
 - /lib/pkgconfig
 - /share/man
 
 modules:
 - name: libolm
   buildsystem: cmake-ninja
+  builddir: true
   sources:
   - type: git
     url: https://gitlab.matrix.org/matrix-org/olm.git
-    tag:  '3.2.15'
+    tag:  '3.2.16'
+    commit: 7e0c8277032e40308987257b711b38af8d77cc69
+    x-checker-data:
+      type: git
+      tag.pattern: ([\d.]+)
   config-opts:
   - -DBUILD_SHARED_LIBS=OFF
+  - -DOLM_TESTS=OFF
   cleanup:
+  - /lib
   - /share
 
 - name: libsecret
   buildsystem: meson
+  builddir: true
   config-opts:
   - -Dmanpage=false
   - -Dvapi=false
   - -Dgtk_doc=false
   - -Dintrospection=false
-  - -Dprefer_static=true
+  - -Dcrypto=disabled
   cleanup:
   - /bin
   sources:
   - type: git
     url: https://gitlab.gnome.org/GNOME/libsecret.git
-    tag: '0.21.3'
-
+    tag: '0.21.6'
+    commit: e59012225c2857d53738574423416b541f11a131
+    x-checker-data:
+      type: git
+      tag.pattern: ([\d.]+)
+          
 - name: qtkeychain
   buildsystem: cmake-ninja
+  builddir: true
   sources:
   - type: git
     url: https://github.com/frankosterfeld/qtkeychain.git
-    tag: '0.14.3'
+    tag: '0.15.0'
+    commit: ad7344c45a86a4f66cbafc4b081b5f7b876cb0b7
+    x-checker-data:
+      type: git
+      tag.pattern: ([\d.]+)
+  cleanup:
+  - mkspecs
+  - /lib/cmake
   config-opts:
   - -DBUILD_WITH_QT6=ON
-  - -DBUILD_SHARED_LIBS=OFF
+  # When linked statically, Qt Keychain fails to work with all kinds of strange DBus errors
+#  - -DBUILD_SHARED_LIBS=OFF
+  - -DCMAKE_INSTALL_LIBDIR=/app/lib
+  - -DLIB_INSTALL_DIR=/app/lib
   - -DBUILD_TEST_APPLICATION=OFF
 
 - name: quaternion
   buildsystem: cmake-ninja
+  builddir: true
   cleanup:
   - /share/ndk-modules
   sources:
   - type: git
     url: https://github.com/quotient-im/Quaternion.git
-    tag: '0.0.97-beta1'
     disable-submodules: false
+    tag: '0.0.97'
+    commit: 051e8a92162011b0732d9a22bfecd5365e489474
+    x-checker-data:
+      type: git
+      tag.pattern: ([\d.]+)(-[a-z]+)?
   config-opts:
   - -DQuotient_INSTALL_TESTS=OFF
   - -DBUILD_SHARED_LIBS=OFF
