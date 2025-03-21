@@ -53,8 +53,8 @@ modules:
   sources:
   - type: git
     url: https://gitlab.gnome.org/GNOME/libsecret.git
-    tag: '0.21.6'
-    commit: e59012225c2857d53738574423416b541f11a131
+    tag: '0.21.7'
+    commit: 0936f740c02b60f02657729cd99f581db4517a41
     x-checker-data:
       type: git
       tag.pattern: ([\d.]+)
@@ -90,8 +90,8 @@ modules:
   - type: git
     url: https://github.com/quotient-im/Quaternion.git
     disable-submodules: false
-    tag: '0.0.97'
-    commit: 051e8a92162011b0732d9a22bfecd5365e489474
+    tag: '0.0.97.1'
+    commit: 53be5b207c899e3393e5e3702d66fe315eb73a07
     x-checker-data:
       type: git
       tag.pattern: ([\d.]+)(-[a-z]+)?
