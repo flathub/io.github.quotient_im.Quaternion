@@ -1,0 +1,30 @@
+From 894eed5cb67fe8cab713a9bb449bc754f1b9de5d Mon Sep 17 00:00:00 2001
+From: Sabri Ünal <yakushabb@gmail.com>
+Date: Sat, 13 Jun 2026 23:22:29 +0300
+Subject: [PATCH] Fix missing CorePrivate
+
+> CMake Error at lib/CMakeLists.txt:367 (target_link_libraries):
+> Target "QuotientQt6" links to: Qt6::CorePrivate
+> but the target was not found.
+
+Signed-off-by: Sabri Ünal <yakushabb@gmail.com>
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index c230297..0cb3aae 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -69,7 +69,7 @@ string(REGEX REPLACE "^(.).*" "Qt\\1" Qt ${QtMinVersion}) # makes "Qt<MajorVersi
+ # Find the libraries
+ find_package(${Qt} ${QtMinVersion} REQUIRED
+     Widgets Network Quick Gui Multimedia QuickControls2 QuickWidgets
+-    LinguistTools)
++    LinguistTools CorePrivate)
+ # ${Qt}_Prefix is only used to show Qt path in message()
+ # ${Qt}_BinDir is where all the *deployqt tools reside
+ if (QT_QMAKE_EXECUTABLE)
+--
+libgit2 1.7.2
+
